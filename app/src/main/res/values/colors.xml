@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="write">#ffffff</color>
+    <color name="newBlueBtn">#1dabff</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="WhiteSmoke">#F5F5F5</color>
+
+    <color name="qmui_config_color_pure_black">#000000</color>
+    <color name="qmui_config_color_75_pure_black">#C0000000</color>
+    <color name="qmui_config_color_60_pure_black">#99000000</color>
+    <color name="qmui_config_color_50_pure_black">#80000000</color>
+    <color name="qmui_config_color_25_pure_black">#40000000</color>
+    <color name="qmui_config_color_15_pure_black">#26000000</color>
+    <color name="qmui_config_color_10_pure_black">#19000000</color>
+    <color name="qmui_config_color_01_pure_black">#10000000</color>
+    <color name="Gainsboro">#DCDCDC</color>
+    <color name="purple">#1b88ee</color>
+
+    <!-- Fully transparent, equivalent to 0x00000000 -->
+    <color name="transparent">#00000000</color>
+</resources>

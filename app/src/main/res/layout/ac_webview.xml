@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/panding"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/bar_not_select" />
+
+    <ProgressBar
+        android:id="@+id/PB_webview"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dip"
+        android:max="100"
+        android:progress="0"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/RL_webview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="94"
+        android:background="@color/white"></RelativeLayout>
+
+
+</LinearLayout>

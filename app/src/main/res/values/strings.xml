@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Custom</string>
+    <string name="NetworkError">网络错误</string>
+    <string name="net_timeout">连接超时</string>
+    <string name="net_out">链接失败</string>
+    <string name="send_no">发送失败</string>
+    <string name="net_erro">网络错误</string>
+    <string name="openphoto">打开图库</string>
+    <string name="paiPhoto">拍照</string>
+    <string name="Maxmsg">最大消息长度500</string>
+    <string name="putmsg">请输入发送消息</string>
+    <string name="photo_max">请上传小于2.0M的图片</string>
+</resources>

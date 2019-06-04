@@ -1,0 +1,84 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="spTheme" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+
+    <style name="SpnStyle">
+        <item name="colorAccent">#888888</item>
+        <item name="colorControlNormal">#dd0c0c0c</item>
+    </style>
+
+    <style name="NotitleBarTheme" parent="AppTheme">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="QMUI.TipDialog" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="qmui_tip_dialog_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">120dp</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:background">@drawable/qmui_tip_dialog_bg</item>
+    </style>
+
+    <style name="MyDialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
+    <style name="progressbar_h" parent="Widget.AppCompat.ProgressBar.Horizontal">
+
+    </style>
+
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--背景透明-->
+        <item name="android:windowFrame">@null</item>  <!--边框-->
+        <item name="android:windowNoTitle">true</item>  <!--无标题-->
+        <item name="android:windowIsFloating">true</item>  <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item>  <!--半透明-->
+        <item name="android:windowContentOverlay">@null</item>  <!--内容覆盖 -->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <!-- 窗口样式Dialog -->
+        <item name="android:backgroundDimEnabled">true</item>  <!--模糊-->  　
+    </style>
+
+
+</resources>

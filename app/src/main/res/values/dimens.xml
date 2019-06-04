@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="defultSize">14dp</dimen>
+    <dimen name="defultSize_s">12dp</dimen>
+    <dimen name="defultSize_ss">10dp</dimen>
+</resources>
