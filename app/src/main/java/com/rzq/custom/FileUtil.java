@@ -63,6 +63,24 @@ public class FileUtil {
         }
         return imagePath;
     }
+    /**
+     * 取得文件大小
+     *
+     * @param f
+     * @return
+     * @throws Exception
+     */
+    public static long getFileSizes(File f) throws Exception {
+        long s = 0;
+        if (f.exists()) {
+            FileInputStream fis = null;
+            fis = new FileInputStream(f);
+            s = fis.available();
+        } else {
+            f.createNewFile();
+        }
+        return s;
+    }
 
     /**
      * 获取该应用日志缓存目录

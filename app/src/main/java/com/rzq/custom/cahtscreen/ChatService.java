@@ -103,7 +103,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
         connector = new LiteSocketClient.Builder()
                 .client(client) //设置SocketClient
                 .protocols(TextProtocols.create()) //使用text协议
-                .pingInterval(15) //设置心跳间隔（秒）大于0打开心跳功能
+                .pingInterval(5) //设置心跳间隔（秒）大于0打开心跳功能
                 .build();
 
 
@@ -195,8 +195,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
                             }
                             break;
                         }
-                        case "newmsg": {//usermsg    为其它用户向你发送了消息 //TODO{"request":"newmsg","code":"7","result":"10,%20%E7%9C%8B%E8%AE%B0%E5%BD%95"}
-
+                        case "newmsg": {//    为其它用户向你发送了消息 //TODO{"request":"newmsg","code":"7","result":"10,%20%E7%9C%8B%E8%AE%B0%E5%BD%95"}
                             try {
                                 /**
                                  * code":"2",

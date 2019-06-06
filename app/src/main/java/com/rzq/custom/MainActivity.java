@@ -231,8 +231,6 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
         super.onDestroy();
         try {
             bradcastHelper.unregisterReceiver();
-            AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-            am.cancel(pi);
         } catch (Exception e) {
             e.printStackTrace();
         }

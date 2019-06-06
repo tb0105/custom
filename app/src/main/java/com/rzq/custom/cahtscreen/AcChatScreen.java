@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.rzq.custom.CameraUtil;
 import com.rzq.custom.FileUtil;
-import com.rzq.custom.PopuWindowUtils;
+import com.rzq.custom.AlertdialogUtil;
 import com.rzq.custom.R;
 import com.rzq.custom.base.BaseAc;
 import com.rzq.custom.base.BaseAction;
@@ -99,7 +99,7 @@ public class AcChatScreen extends BaseAc implements OnNextCall<MessageBean>, Ref
         }
     };
     private PendingIntent pi;
-    private PopuWindowUtils popuWindowUtils;
+    private AlertdialogUtil popuWindowUtils;
 
     @Override
     protected AcBean initAc() {
@@ -193,7 +193,7 @@ public class AcChatScreen extends BaseAc implements OnNextCall<MessageBean>, Ref
     private void showPopu(MessageBean next) {
         if (popuWindowUtils != null)
             popuWindowUtils.dismiss();
-        popuWindowUtils = new PopuWindowUtils(mActivity, R.layout.image_show);
+        popuWindowUtils = new AlertdialogUtil(mActivity, R.layout.image_show);
         PhotoView iv_img = popuWindowUtils.getRootView().findViewById(R.id.iv_img);
         try {
             if (next.getMsginfo() != null && next.getMsginfo().contains("[pic]"))
