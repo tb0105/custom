@@ -10,4 +10,5 @@
     <string name="Maxmsg">最大消息长度500</string>
     <string name="putmsg">请输入发送消息</string>
     <string name="photo_max">请上传小于2.0M的图片</string>
+    <string name="copyOk">复制成功</string>
 </resources>

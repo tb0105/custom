@@ -3,6 +3,8 @@ package com.rzq.custom.cahtscreen;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,8 +40,10 @@ import com.rzq.custom.base.utils.ToastUtils;
 import com.rzq.custom.cahtscreen.db.FrendBean;
 import com.rzq.custom.cahtscreen.db.MessageBean;
 import com.rzq.custom.cahtscreen.db.MessageDao;
+import com.rzq.custom.socketClient.PopuWindowUtil;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -99,7 +103,7 @@ public class AcChatScreen extends BaseAc implements OnNextCall<MessageBean>, Ref
         }
     };
     private PendingIntent pi;
-    private AlertdialogUtil popuWindowUtils;
+    private PopuWindowUtil popuWindowUtils;
 
     @Override
     protected AcBean initAc() {
@@ -134,6 +138,17 @@ public class AcChatScreen extends BaseAc implements OnNextCall<MessageBean>, Ref
             public void onNext(MessageBean next) {
                 showPopu(next);
 
+            }
+        });
+        adapter.setItemLongCheck(new OnNextCall<MessageBean>() {
+            @Override
+            public void onNext(MessageBean next) {
+                try {
+                    ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    cm.setPrimaryClip(ClipData.newPlainText(null, next.getMsginfo()));
+                    ToastUtils.show(mContext, mContext.getResources().getString(R.string.copyOk));
+                } catch (Exception e) {
+                }
             }
         });
         refreshView.setAdapter(adapter);
@@ -193,7 +208,7 @@ public class AcChatScreen extends BaseAc implements OnNextCall<MessageBean>, Ref
     private void showPopu(MessageBean next) {
         if (popuWindowUtils != null)
             popuWindowUtils.dismiss();
-        popuWindowUtils = new AlertdialogUtil(mActivity, R.layout.image_show);
+        popuWindowUtils = new PopuWindowUtil(mActivity, R.layout.image_show);
         PhotoView iv_img = popuWindowUtils.getRootView().findViewById(R.id.iv_img);
         try {
             if (next.getMsginfo() != null && next.getMsginfo().contains("[pic]"))
@@ -266,12 +281,13 @@ public class AcChatScreen extends BaseAc implements OnNextCall<MessageBean>, Ref
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        CameraUtil.onActivityResult(mContext, requestCode, resultCode, data, new OnNextCall<Bitmap>() {
+        CameraUtil.onActivityResultFile(mContext, requestCode, resultCode, data, new OnNextCall<File>() {
             @Override
-            public void onNext(final Bitmap next) {
+            public void onNext(final File next) {
                 if (next != null) {
-                    long len = StringUtil.getBitmapSize(next);
-                    if (len >(2*1024*1024*8)) {
+                    DecimalFormat df = new DecimalFormat("#.0");
+                    double size = Double.parseDouble(df.format((double) next.length() / 1048576));
+                    if (size > 1.5) {
                         ToastUtils.show(mContext, getString(R.string.photo_max));
                         return;
                     }
@@ -284,7 +300,7 @@ public class AcChatScreen extends BaseAc implements OnNextCall<MessageBean>, Ref
                     if (UserInfo.getUserId() == frend.getFriendid()) {
                         return;
                     }
-                    File file = FileUtil.setimagefile(next, FileUtil.IMAGEPATH, UserInfo.getUserId() +
+                    File file = FileUtil.setimagefile(FileUtil.getDiskBitmap(next.getPath()), FileUtil.IMAGEPATH, UserInfo.getUserId() +
                             "-" + DateUtils.getyarmmTime(new Date(System.currentTimeMillis())) + "fff.jpg");
                     message.setImg(file.getPath());
                     message.setReceiverid(frend.getFriendid());

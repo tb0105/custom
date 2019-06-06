@@ -25,6 +25,11 @@ public class ChatScreenAdapter extends BaseListAdapter<MessageBean, RecyclerView
     private MsgOnNextCall<MessageBean> sendCallBack;
     private MessageDao messageDao;
     private OnNextCall<MessageBean> itemCheck;
+    private OnNextCall<MessageBean> itemLongCheck;
+
+    public void setItemLongCheck(OnNextCall<MessageBean> itemLongCheck) {
+        this.itemLongCheck = itemLongCheck;
+    }
 
     public void setSendCallBack(MsgOnNextCall<MessageBean> sendCallBack) {
         this.sendCallBack = sendCallBack;
@@ -106,6 +111,14 @@ public class ChatScreenAdapter extends BaseListAdapter<MessageBean, RecyclerView
                 viewHolder.tv_msg.setVisibility(View.GONE);
                 Glide.with(mContext).asBitmap().load(bean.getMsginfo().replace("[pic]", "")).into(viewHolder.iv_img);
             } else {
+                viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        if (itemLongCheck != null)
+                            itemLongCheck.onNext(bean);
+                        return true;
+                    }
+                });
                 if (StringUtil.isnotempty(bean.getImg())) {
                     viewHolder.iv_img.setVisibility(View.VISIBLE);
                     viewHolder.tv_msg.setVisibility(View.GONE);
@@ -193,6 +206,14 @@ public class ChatScreenAdapter extends BaseListAdapter<MessageBean, RecyclerView
                 viewHolder.tv_msg.setVisibility(View.GONE);
                 Glide.with(mContext).asBitmap().load(bean.getMsginfo().replace("[pic]", "")).into(viewHolder.iv_img);
             } else {
+                viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        if (itemLongCheck != null)
+                            itemLongCheck.onNext(bean);
+                        return true;
+                    }
+                });
                 viewHolder.iv_img.setVisibility(View.GONE);
                 viewHolder.tv_msg.setVisibility(View.VISIBLE);
                 viewHolder.tv_msg.setText(bean.getMsginfo());
