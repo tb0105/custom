@@ -24,7 +24,7 @@ public class Notification {
             channel = new NotificationChannel(id,
                     "Channel1", NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableLights(true); //是否在桌面icon右上角展示小红点
-            channel.setLightColor(Color.GREEN); //小红点颜色
+            channel.setLightColor(Color.RED); //小红点颜色
             channel.setShowBadge(true); //是否在久按桌面图标时显示此渠道的通知
             notifyManager.createNotificationChannel(channel);
             builder = new NotificationCompat.Builder(context, channel.getId())
