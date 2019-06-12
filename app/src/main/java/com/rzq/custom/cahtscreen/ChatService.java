@@ -112,6 +112,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
             @Override
             public void connectSuccess() {
                 Log.e(TAG, "===连接成功===");
+                SendRequest("Ping 15823138883");
             }
 
             @Override

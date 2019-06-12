@@ -46,7 +46,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
-        <service android:name=".cahtscreen.ChatService" />
+        <service android:name=".cahtscreen.ChatService" android:process=":custom"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
