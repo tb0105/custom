@@ -27,8 +27,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
@@ -46,8 +46,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
-        <service android:name=".cahtscreen.ChatService" android:process=":custom"/>
-
+        <service
+            android:name=".cahtscreen.ChatService"
+            android:process=":custom" />
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.rzq.custom.fileProvider"
