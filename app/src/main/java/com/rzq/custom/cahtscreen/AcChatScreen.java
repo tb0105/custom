@@ -221,6 +221,14 @@ public class AcChatScreen extends BaseAc implements OnNextCall<MessageBean>, Ref
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (chatScreenModle == null)
+            chatScreenModle = new ChatScreenModleImp(this, mContext);
+        chatScreenModle.getMessageList(refreshView);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         try {

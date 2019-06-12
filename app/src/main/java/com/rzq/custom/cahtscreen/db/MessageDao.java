@@ -41,7 +41,7 @@ public class MessageDao extends BaseDao<MessageBean> {
 
     public List<MessageBean> querychat(int friendid) {
         try {
-            Where<MessageBean, Integer> where = dao.queryBuilder().orderBy(MessageBean.COLUMNNAME_SENDTIME, false).where();
+            Where<MessageBean, Integer> where = dao.queryBuilder().orderBy(MessageBean.COLUMNNAME_SERVERIDX, false).where();
             where.or(
                     where.and(
                             where.eq(MessageBean.COLUMNNAME_SENDERID, UserInfo.getUserId()),

@@ -59,7 +59,7 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(updatedt);
         calendar.get(Calendar.YEAR);
-        int mM = calendar.get(Calendar.MONTH);
+        int mM = calendar.get(Calendar.MONTH) + 1;
         int dD = calendar.get(Calendar.DATE);
         calendar.get(Calendar.HOUR);
         int hH = calendar.get(Calendar.HOUR_OF_DAY);
@@ -73,7 +73,7 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(updatedt);
         int yY = calendar.get(Calendar.YEAR);
-        int mM = calendar.get(Calendar.MONTH);
+        int mM = calendar.get(Calendar.MONTH)+1;
         int dD = calendar.get(Calendar.DATE);
         calendar.get(Calendar.HOUR);
         int hH = calendar.get(Calendar.HOUR_OF_DAY);
@@ -87,7 +87,7 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(updatedt);
         int yY = calendar.get(Calendar.YEAR);
-        int mM = calendar.get(Calendar.MONTH);
+        int mM = calendar.get(Calendar.MONTH)+1;
         int dD = calendar.get(Calendar.DATE);
         calendar.get(Calendar.HOUR);
         int hH = calendar.get(Calendar.HOUR_OF_DAY);
@@ -101,13 +101,13 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(sendtime);
         int yY = calendar.get(Calendar.YEAR);
-        int mM = calendar.get(Calendar.MONTH);
+        int mM = calendar.get(Calendar.MONTH)+1;
         int dD = calendar.get(Calendar.DATE);
         calendar.get(Calendar.HOUR);
         int hH = calendar.get(Calendar.HOUR_OF_DAY);
         int mm = calendar.get(Calendar.MINUTE);
         int sS = calendar.get(Calendar.SECOND);
         calendar.get(Calendar.DAY_OF_WEEK);
-        return yY + "" + mM + "" + dD + "" + hH + "" + mm + ""+sS;
+        return yY + "" + mM + "" + dD + "" + hH + "" + mm + "" + sS;
     }
 }
