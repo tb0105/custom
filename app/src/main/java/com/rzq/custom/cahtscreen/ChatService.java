@@ -65,6 +65,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
         if (connector == null) {
             ReCreate();
         }
+        Log.e("----", "ssss");
         if (intent != null && intent.getAction() != null) {
             switch (intent.getAction()) {
                 case SOCKETMSG_CHAT: {
