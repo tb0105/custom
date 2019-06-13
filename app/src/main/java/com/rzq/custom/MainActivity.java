@@ -138,7 +138,7 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
                         bean.setMsgCount(count);
 
                         bean.setTopMsg(messagedo.queryStatusTomsg(msgBean.getSenderid()) + "");
-                        Date dyt = messagedo.queryStatusToUpdatedt(msgBean.getSenderid());
+                        Date dyt = messagedo.queryStatusToUpdatedt(msgBean);
                         bean.setUpdatedt(dyt);
                         bean.setFriend(msgBean.getSenderid() + "");
                         messagelist.add(bean);

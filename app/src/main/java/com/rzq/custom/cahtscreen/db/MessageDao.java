@@ -100,10 +100,18 @@ public class MessageDao extends BaseDao<MessageBean> {
         return null;
     }
 
-    public Date queryStatusToUpdatedt(int senderid) {
+    public Date queryStatusToUpdatedt(MessageBean send) {
         try {
-            if (dao != null)
-                return dao.queryBuilder().where().eq(MessageBean.COLUMNNAME_SENDERID, senderid + "").queryForFirst().getUpdatedt();
+            Where<MessageBean, Integer> where = dao.queryBuilder().orderBy(MessageBean.COLUMNNAME_SERVERIDX, false).where();
+            where.or(
+                    where.and(
+                            where.eq(MessageBean.COLUMNNAME_SENDERID, send.getSenderid()),
+                            where.eq(MessageBean.COLUMNNAME_RECEIVERID, send.getReceiverid())),
+                    where.and(
+                            where.eq(MessageBean.COLUMNNAME_SENDERID, send.getReceiverid()),
+                            where.eq(MessageBean.COLUMNNAME_RECEIVERID, send.getSenderid()))
+            );
+            return where.queryForFirst().getUpdatedt();
         } catch (Exception e) {
             e.printStackTrace();
         }

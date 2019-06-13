@@ -88,7 +88,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
                 break;
             }
         }
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
     }
 
     public void SendRequest(String msg) {
