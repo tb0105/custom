@@ -114,6 +114,7 @@ public abstract class BaseChatScreenModle implements ChatScreenModle {
                         }
 
                     }
+
                     refreshView.setItemList(chatList);
                 } catch (Exception e) {
                     e.printStackTrace();

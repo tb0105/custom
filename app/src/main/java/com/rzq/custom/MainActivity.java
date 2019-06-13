@@ -149,7 +149,7 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
                             try {
                                 long o1start = DateUtils.dateToLong(o1.getUpdatedt());
                                 long o2start = DateUtils.dateToLong(o2.getUpdatedt());
-                                if (o1start > o2start) {
+                                if (o1start < o2start) {
                                     return 1;
                                 } else if (o1start == o2start) {
                                     return 0;

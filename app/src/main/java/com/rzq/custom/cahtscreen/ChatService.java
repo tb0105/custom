@@ -34,6 +34,11 @@ import org.json.JSONObject;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Flowable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class ChatService extends BaseService implements BaseService.ReceiveCallBack {
     public static final String SOCKETMSG_CHATGIFT = "com.rzq.rose.service.ChatService.SOCKETMSG_CHATGIFT";
@@ -58,6 +63,30 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
         setReceiveCallBack(this);
         Log.e(TAG, "Service Oncreate");
         ReCreate();
+        startQueue();
+    }
+
+    private void startQueue() {
+        Flowable.interval(15, TimeUnit.SECONDS).observeOn(Schedulers.io()).subscribe(new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                if (connector == null) {
+                    ReCreate();
+                }
+                if (cha.isDisposed()) {
+                    reCha();
+                    connector.connect();
+                }
+                if (chb.isDisposed()) {
+                    reChb();
+                    connector.connect();
+                }
+
+                String id = UserInfo.getUserId() + "";
+                Log.w(TAG, "pullmsg " + id);
+                SendRequest("pullmsg " + id);
+            }
+        });
     }
 
     @Override
@@ -71,18 +100,18 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
                 case SOCKETMSG_CHAT: {
                     String msg = intent.getStringExtra(SOCKETMSG);
                     SendRequest("sendchat " + msg);
-                    Log.e(TAG, "sendchat " + msg);
+                    Log.w(TAG, "sendchat " + msg);
                 }
                 break;
                 case SOCKETMSG_PULLMSG: {
                     String id = UserInfo.getUserId() + "";
-                    Log.e(TAG, "pullmsg " + id);
+                    Log.w(TAG, "pullmsg " + id);
                     SendRequest("pullmsg " + id);
                 }
                 break;
                 case GETUSERINFO: {
                     int user = intent.getIntExtra("user", -1);
-                    Log.e(TAG, "QueryUser " + user);
+                    Log.w(TAG, "QueryUser " + user);
                     SendRequest("QueryUser " + user);
                 }
                 break;
@@ -91,23 +120,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
         return START_STICKY;
     }
 
-    public void SendRequest(String msg) {
-        connector.send(msg);
-    }
-
-    private void ReCreate() {
-        SocketClient client = new SocketClient.Builder()
-                .ip(Defines.getAuctionServer(CustomApp.instance)) //设置ip、端口
-                .port(Defines.getPort2())
-                .setKeepAlive(true) //设置socket选项
-                .build();
-        connector = new LiteSocketClient.Builder()
-                .client(client) //设置SocketClient
-                .protocols(TextProtocols.create()) //使用text协议
-                .pingInterval(5) //设置心跳间隔（秒）大于0打开心跳功能
-                .build();
-
-
+    private void reCha() {
         cha = connector.onConnect(new ConnectHandler() {
 
             @Override
@@ -128,6 +141,9 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
             }
 
         });
+    }
+
+    private void reChb() {
 
         chb = connector.onMessage(new MessageHandler() {
             @Override
@@ -150,7 +166,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
                             try {
                                 String result = map.get("result");
                                 String code = map.get("code");
-                                Log.e(TAG, "QueryUser:" + result);
+                                Log.w(TAG, "QueryUser:" + result);
                                 //{"request":"QueryUser","code":"1","result":"[{\"username\":\"pppp11\",\"mycode\":\"68428081\"}]"}
 
                                 if (friendDao == null)
@@ -179,7 +195,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
                             try {
                                 String result = map.get("result");
                                 String code = map.get("result");
-                                Log.e(TAG, "sendrespone:" + result);
+                                Log.w(TAG, "sendrespone:" + result);
 
                                 if (messagedao == null)
                                     messagedao = new MessageDao(getApplicationContext());
@@ -211,7 +227,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
                                  * \"status\":\"0\"}
                                  */
                                 String result = map.get("result");
-                                Log.e(TAG, "newmsg:" + result);
+                                Log.w(TAG, "newmsg:" + result);
                                 if (messagedao == null)
                                     messagedao = new MessageDao(getApplicationContext());
                                 if (messagelockdao == null)
@@ -244,7 +260,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
                         case "pullmsg": {
                             try {
                                 String result = map.get("result");
-                                Log.e(TAG, "pullmsg:" + result);
+                                Log.w(TAG, "pullmsg:" + result);
                                 if (messagedao == null)
                                     messagedao = new MessageDao(getApplicationContext());
                                 if (messagelockdao == null)
@@ -284,6 +300,26 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
                 }
             }
         });
+    }
+
+    public void SendRequest(String msg) {
+        connector.send(msg);
+    }
+
+    private void ReCreate() {
+        SocketClient client = new SocketClient.Builder()
+                .ip(Defines.getAuctionServer(CustomApp.instance)) //设置ip、端口
+                .port(Defines.getPort2())
+                .setKeepAlive(true) //设置socket选项
+                .build();
+        connector = new LiteSocketClient.Builder()
+                .client(client) //设置SocketClient
+                .protocols(TextProtocols.create()) //使用text协议
+                .pingInterval(5) //设置心跳间隔（秒）大于0打开心跳功能
+                .build();
+        reCha();
+        reChb();
+
         connector.connect();
     }
 
