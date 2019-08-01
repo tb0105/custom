@@ -61,6 +61,9 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
     protected void initBar() {
         super.initBar();
         rl_bar.setBackgroundResource(R.color.newBlueBtn);
+        tv_more.setVisibility(View.VISIBLE);
+        tv_more.setText("切换客服");
+
     }
 
     @Override
@@ -81,6 +84,18 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
         bradcastHelper.regist();
         initMessageRx();
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+            case R.id.tv_more: {
+                startAc(AcLogin.class);
+                finish();
+            }
+            break;
+        }
     }
 
     private void initMessageRx() {
