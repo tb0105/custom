@@ -46,6 +46,7 @@ public abstract class BaseAc extends AppCompatActivity implements View.OnClickLi
                 rl_bar = findViewById(R.id.rl_bar);
                 tv_titlle = findViewById(R.id.tv_title);
                 ib_back = findViewById(R.id.ib_back);
+                tv_more=findViewById(R.id.tv_more);
                 marginTop(rl_bar);
                 tv_titlle.setText(acBean.title);
             }

@@ -39,6 +39,7 @@ public class AcLogin extends BaseAc {
                 }
                 UserInfo.setUserId(Integer.parseInt(id));
                 startAc(MainActivity.class);
+                finish();
             }
         });
     }
