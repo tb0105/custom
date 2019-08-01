@@ -23,6 +23,7 @@ import com.rzq.custom.base.utils.OnNextCall;
 import com.rzq.custom.base.utils.RxMianUtli;
 import com.rzq.custom.cahtscreen.AcChatScreen;
 import com.rzq.custom.cahtscreen.ChatService;
+import com.rzq.custom.cahtscreen.UserInfo;
 import com.rzq.custom.cahtscreen.db.FrendBean;
 import com.rzq.custom.cahtscreen.db.FriendDao;
 import com.rzq.custom.cahtscreen.db.MesageLockDao;
@@ -83,7 +84,7 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
         bradcastHelper.setActions(actionlist);
         bradcastHelper.regist();
         initMessageRx();
-
+        tv_titlle.setText(UserInfo.getUsername() + " ID:" + UserInfo.getUserId());
     }
 
     @Override
