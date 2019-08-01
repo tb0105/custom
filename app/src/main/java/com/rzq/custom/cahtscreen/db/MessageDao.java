@@ -69,8 +69,7 @@ public class MessageDao extends BaseDao<MessageBean> {
         try {
             return dao.queryBuilder().distinct().groupBy(MessageBean.COLUMNNAME_SENDERID)
                     .orderBy(MessageBean.COLUMNNAME_SENDTIME, false).where()
-                    .ne(MessageBean.COLUMNNAME_SENDERID, UserInfo.getUserId())
-                    .or().eq(MessageBean.COLUMNNAME_RECEIVERID, UserInfo.getUserId()).query();
+                    .eq(MessageBean.COLUMNNAME_RECEIVERID, UserInfo.getUserId()).query();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,10 +89,16 @@ public class MessageDao extends BaseDao<MessageBean> {
 
     public String queryStatusTomsg(int senderid) {
         try {
-            if (dao != null)
-                return dao.queryBuilder().orderBy(MessageBean.COLUMNNAME_SENDTIME, false)
-                        .where().eq(MessageBean.COLUMNNAME_SENDERID, senderid).or().eq(MessageBean.COLUMNNAME_RECEIVERID, senderid)
-                        .queryForFirst().getMsginfo();
+            Where<MessageBean, Integer> where = dao.queryBuilder().orderBy(MessageBean.COLUMNNAME_SERVERIDX, false).where();
+            where.or(
+                    where.and(
+                            where.eq(MessageBean.COLUMNNAME_SENDERID, senderid),
+                            where.eq(MessageBean.COLUMNNAME_RECEIVERID, UserInfo.getUserId())),
+                    where.and(
+                            where.eq(MessageBean.COLUMNNAME_SENDERID, UserInfo.getUserId()),
+                            where.eq(MessageBean.COLUMNNAME_RECEIVERID, senderid))
+            );
+            return where.queryForFirst().getMsginfo();
         } catch (Exception e) {
             e.printStackTrace();
         }

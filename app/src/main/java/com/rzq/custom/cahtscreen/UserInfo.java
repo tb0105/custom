@@ -22,7 +22,6 @@ public class UserInfo {
     }
 
     public static String getUsername() {
-        ShareUtil.SetPerfenceInfo(MyApp.instance.getApplicationContext(), "userid", userId + "");
         return username;
     }
 

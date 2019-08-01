@@ -92,6 +92,7 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
         super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_more: {
+                stopService(new Intent(this, ChatService.class));
                 startAc(AcLogin.class);
                 finish();
             }
@@ -118,7 +119,7 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
                         FrendBean friendBean;
                         Intent intent = new Intent(mActivity, ChatService.class);
                         intent.setAction(ChatService.GETUSERINFO);
-                        if (msgBean.getSenderid() == 2) {
+                        if (msgBean.getSenderid() == UserInfo.getUserId()) {
                             friendBean = friendDao.query(msgBean.getReceiverid() + "");
                             intent.putExtra("user", msgBean.getReceiverid());
                         } else {
