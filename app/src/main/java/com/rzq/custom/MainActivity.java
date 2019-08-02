@@ -62,6 +62,7 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
     protected void initBar() {
         super.initBar();
         rl_bar.setBackgroundResource(R.color.newBlueBtn);
+        marginTop(rl_bar, R.color.newBlueBtn);
         tv_more.setVisibility(View.VISIBLE);
         tv_more.setText("切换客服");
 
@@ -84,7 +85,7 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
         bradcastHelper.setActions(actionlist);
         bradcastHelper.regist();
         initMessageRx();
-        tv_titlle.setText(UserInfo.getUsername() + " ID:" + UserInfo.getUserId());
+        tv_titlle.setText(UserInfo.getUsername());
     }
 
     @Override
@@ -93,7 +94,7 @@ public class MainActivity extends BaseAc implements RefreshView.LoadingListenner
         switch (v.getId()) {
             case R.id.tv_more: {
                 stopService(new Intent(this, ChatService.class));
-                startAc(AcLogin.class);
+                startAc(AcCustomService.class);
                 finish();
             }
             break;

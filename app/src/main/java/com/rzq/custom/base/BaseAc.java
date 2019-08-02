@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,7 +82,10 @@ public abstract class BaseAc extends AppCompatActivity implements View.OnClickLi
     }
 
     protected void marginTop(View view) {
-        ImmersedStatusbarUtils.initAfterSetContentView(mActivity, view);
+        ImmersedStatusbarUtils.initAfterSetContentView(mActivity, view, R.color.white);
+    }
+    protected void marginTop(View view,int color) {
+        ImmersedStatusbarUtils.initAfterSetContentView(mActivity,view, color);
     }
 
     public View getRootView(Activity context) {

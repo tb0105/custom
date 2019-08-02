@@ -11,4 +11,8 @@
     <string name="putmsg">请输入发送消息</string>
     <string name="photo_max">请上传小于2.0M的图片</string>
     <string name="copyOk">复制成功</string>
+    <string name="loading">加载中</string>
+    <string name="consult_now">联系客服</string>
+    <string name="custom_call">客服列表</string>
+    <string name="select">选择</string>
 </resources>

@@ -3,4 +3,7 @@
     <dimen name="defultSize">14dp</dimen>
     <dimen name="defultSize_s">12dp</dimen>
     <dimen name="defultSize_ss">10dp</dimen>
+    <dimen name="defaultSize_ss">10dp</dimen>
+    <dimen name="defaultSize">14dp</dimen>
+    <dimen name="defultSize2">16dp</dimen>
 </resources>

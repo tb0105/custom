@@ -22,4 +22,6 @@
 
     <!-- Fully transparent, equivalent to 0x00000000 -->
     <color name="transparent">#00000000</color>
+    <color name="red">#ff0000</color>
+    <color name="grayhint">#999999</color>
 </resources>
