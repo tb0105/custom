@@ -126,7 +126,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
             @Override
             public void connectSuccess() {
                 Log.e(TAG, "===连接成功===");
-                SendRequest("Ping 15823138883");
+                SendRequest("Ping "+UserInfo.getPhone());
             }
 
             @Override
@@ -286,6 +286,7 @@ public class ChatService extends BaseService implements BaseService.ReceiveCallB
                                 Intent intent = new Intent(SOCKETMSG_CHAT);
                                 sendBroadcast(intent);
                                 SendRequest("received " + UserInfo.getUserId() + ids);
+                                Log.e("received", "" + UserInfo.getUserId() + ids);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

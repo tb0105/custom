@@ -63,9 +63,9 @@ public class AcCustomService extends BaseAc implements CustomBeanListener<Custom
         try {
             List<CustomBean> customBeans = new ArrayList<>();
 
-            customBeans.add(new CustomBean("客服1", "", "", 2));
-            customBeans.add(new CustomBean("客服2", "", "", 4));
-            customBeans.add(new CustomBean("客服3", "", "", 5));
+            customBeans.add(new CustomBean("客服1", "", "", 2,"15823138883"));
+            customBeans.add(new CustomBean("客服2", "", "", 4,"13000000001"));
+            customBeans.add(new CustomBean("客服3", "", "", 5,"13000000002"));
             for (MessageBean bean : new MessageDao(this).queryAll()) {
                 if (!new MesageLockDao(this).Exist(bean.getMsgid())) {
                     for (CustomBean customBean : customBeans) {
@@ -86,6 +86,7 @@ public class AcCustomService extends BaseAc implements CustomBeanListener<Custom
     public void Call(CustomBean customBean) {
         UserInfo.setUserId(customBean.code);
         UserInfo.setUsername(customBean.name);
+        UserInfo.setPhone(customBean.phone);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 //        if (isQQClientAvailable(mActivity)) {

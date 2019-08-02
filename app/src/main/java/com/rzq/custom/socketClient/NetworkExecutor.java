@@ -283,7 +283,8 @@ public class NetworkExecutor {
 
             try {
                 while (!Thread.currentThread().isInterrupted()) {
-                    String pingdata = "Ping 15823138883";
+                    String pingdata = "Ping " + UserInfo.getPhone();
+                    Log.d("Ping ", " " + pingdata);
                     RequestPacket packet = new RequestPacket(pingdata.getBytes());
                     Log.d("DEBUG", Thread.currentThread().getName() + ": =======发送心跳包========:数据:" + packet.GetString());
                     getRequestQueue().put(packet);

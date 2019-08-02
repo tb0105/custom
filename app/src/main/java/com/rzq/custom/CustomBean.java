@@ -5,6 +5,7 @@ public class CustomBean {
     public String qqwnum;
     public String img;
     public int code;
+    public String  phone;
     int notnumber;
 
     public int getNotnumber() {
@@ -15,10 +16,11 @@ public class CustomBean {
         this.notnumber = notnumber;
     }
 
-    public CustomBean(String name, String qqwnum, String img, int code) {
+    public CustomBean(String name, String qqwnum, String img, int code,String phone) {
         this.name = name;
         this.qqwnum = qqwnum;
         this.img = img;
         this.code = code;
+        this.phone = phone;
     }
 }

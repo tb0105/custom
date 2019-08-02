@@ -31,17 +31,17 @@ public class MessageBean {
     @DatabaseField(unique = true, useGetSet = true, columnName = COLUMNNAME_SERVERIDX)
     private int msgid;
     @DatabaseField(useGetSet = true, columnName = COLUMNNAME_MSG)
-    private String msginfo;
+    private String msginfo="";
     @DatabaseField(useGetSet = true, columnName = COLUMNNAME_UPDATEDT)
     private Date updatedt;
     @DatabaseField(useGetSet = true, columnName = COLUMNNAME_SENDTIME)
     private Date sendtime;
     @DatabaseField(useGetSet = true, columnName = COLUMNNAME_GIFT)
-    private String gift;
+    private String gift="";
     @DatabaseField(useGetSet = true, columnName = COLUMNNAME_REDPACKET)
-    private String redPacket;
+    private String redPacket="";
     @DatabaseField(useGetSet = true, columnName = COLUMNNAME_IMG)
-    private String img;
+    private String img="";
     @DatabaseField(useGetSet = true, columnName = COLUMNNAME_RECEIVERID)
     private int receiverid;
     @DatabaseField(useGetSet = true, columnName = COLUMNNAME_SENDERID)

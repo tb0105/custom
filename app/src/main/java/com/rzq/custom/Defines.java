@@ -42,8 +42,8 @@ public class Defines {
 
     public static String getWsdlURL(Context context) {
 
-        if (true)
-//        if(false)//27.159.82.32
+//        if (true)
+        if (!MyApp.isIsdebug())//27.159.82.32
         {
             serverip = "27.159.82.32";
             port1 = 3134;
@@ -55,7 +55,7 @@ public class Defines {
                 }
 
                 if (serverjson == null || serverjson.length() == 0) {
-                    serverip = "43.227.221.119";
+                    serverip = "43.227.222.4";
                     port1 = 3133;
                     port2 = 8555;
                 } else {
@@ -73,7 +73,7 @@ public class Defines {
         }
 
 
-        return "http://" + serverip + ":" + port1 ;
+        return "http://" + serverip + ":" + port1;
 
 
     }
@@ -84,7 +84,7 @@ public class Defines {
 
     public static String getAuctionServer(Context context) {
 
-        if (true) {
+        if (!MyApp.isIsdebug()) {
             serverip = "27.159.82.32";
             port1 = 3134;
             port2 = 8555;
@@ -95,7 +95,7 @@ public class Defines {
                 }
 
                 if (serverjson == null || serverjson.length() == 0) {
-                    serverip = "43.227.221.119";
+                    serverip = "43.227.222.4";
                     port1 = 3133;
                     port2 = 8555;
                 } else {

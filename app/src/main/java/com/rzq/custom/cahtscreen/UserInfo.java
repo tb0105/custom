@@ -6,6 +6,7 @@ import com.rzq.custom.ShareUtil;
 public class UserInfo {
     private static int userId = 2;
     private static String username = "客服";
+    private static String phone;
 
     public static int getUserId() {
         try {
@@ -27,5 +28,19 @@ public class UserInfo {
 
     public static void setUsername(String username) {
         UserInfo.username = username;
+    }
+
+    public static String getPhone() {
+        try {
+            phone = ShareUtil.GetPerfenceInfo(MyApp.instance.getApplicationContext(), "phone");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return phone;
+    }
+
+    public static void setPhone(String phone) {
+        ShareUtil.SetPerfenceInfo(MyApp.instance.getApplicationContext(), "phone", phone + "");
+        UserInfo.phone = phone;
     }
 }
